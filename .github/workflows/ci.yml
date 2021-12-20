@@ -26,10 +26,6 @@ jobs:
         with:
           name: dapp
         
-      - name: Check contracts are linted
-        id: lint-check
-        run: yarn lint:check
-
       - name: Run tests
         id: tests-run
         run: dapp test
