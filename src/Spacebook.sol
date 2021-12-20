@@ -6,12 +6,12 @@ import "lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721URISt
 import "lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 import "lib/openzeppelin-contracts/contracts/utils/Counters.sol";
 
-contract MyToken is ERC721, ERC721URIStorage, Ownable {
+contract Spacebook is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("MyToken", "MTK") {}
+    constructor() ERC721("Spacebook", "SPBK") {}
 
     function safeMint(address to, string memory uri) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
