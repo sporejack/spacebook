@@ -9,15 +9,26 @@ import "lib/openzeppelin-contracts/contracts/utils/Counters.sol";
 contract Spacebook is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
+    mapping (uint256 => string) private __names;
+
     Counters.Counter private _tokenIdCounter;
 
     constructor() ERC721("Spacebook", "SPBK") {}
 
-    function safeMint(address to, string memory uri) public onlyOwner {
+    function safeMint(address to, string memory name, string memory uri) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
+        __names[tokenId] = name;
         _setTokenURI(tokenId, uri);
+    }
+    
+    function planetName(uint256 tokenId) public view returns (string memory) {
+        return __names[tokenId];
+    }
+
+    function setURI(uint256 id, string memory uri) public onlyOwner {
+        super._setTokenURI(id, uri);
     }
 
     // The following functions are overrides required by Solidity.
